@@ -17,6 +17,7 @@ export interface Author {
   image: {
     url: string
   }
+  bio: string
 }
 
 export interface Category {

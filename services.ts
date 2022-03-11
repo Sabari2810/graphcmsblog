@@ -81,6 +81,7 @@ export const getPost = async (slug: string) => {
           image {
             url
           }
+          bio
         }
         createdAt
         content {

@@ -1,6 +1,5 @@
-import { useQuery } from '@apollo/client'
-import { useRouter } from 'next/router'
 import React from 'react'
+import Author from '../../components/Author'
 import Categories from '../../components/Categories'
 import Layout from '../../components/Layout'
 import PostDetail from '../../components/PostDetail'
@@ -15,6 +14,7 @@ const Post = ({ recentPosts, cats, post }: any) => {
       <div className="mx-auto grid grid-cols-1 px-10 py-10 lg:grid-cols-3 lg:gap-10 lg:px-0">
         <div className="col-span-2">
           <PostDetail post={post} />
+          <Author author={post.author} />
         </div>
         <div className="relative top-4 col-span-1 mt-10 h-fit lg:sticky lg:mt-0">
           <RecentPosts recentPosts={recentPosts} />
