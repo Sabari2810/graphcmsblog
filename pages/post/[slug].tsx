@@ -1,5 +1,6 @@
 import React from 'react'
 import Author from '../../components/Author'
+import CommentsForm from '../../components/CommetsForm'
 import Categories from '../../components/Categories'
 import Layout from '../../components/Layout'
 import PostDetail from '../../components/PostDetail'
@@ -15,6 +16,7 @@ const Post = ({ recentPosts, cats, post }: any) => {
         <div className="col-span-2">
           <PostDetail post={post} />
           <Author author={post.author} />
+          <CommentsForm slug={post.slug} />
         </div>
         <div className="relative top-4 col-span-1 mt-10 h-fit lg:sticky lg:mt-0">
           <RecentPosts recentPosts={recentPosts} />
