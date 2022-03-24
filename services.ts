@@ -102,3 +102,36 @@ export const getPost = async (slug: string) => {
 
   return response.post
 }
+
+export const createComment = async (obj: any) => {
+  console.log('obj', obj)
+  const response = await fetch('/api/comments', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(obj),
+  })
+
+  return response
+}
+
+export async function getComments(slug: string) {
+  const query = gql`
+    query MyQuery($slug: String!) {
+      comments(where: { post: { slug: $slug } }) {
+        id
+        comment
+        name
+        email
+        createdAt
+      }
+    }
+  `
+
+  const result = await request(endpoint, query, {
+    slug: slug,
+  })
+
+  return result.comments
+}

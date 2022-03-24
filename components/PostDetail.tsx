@@ -29,7 +29,6 @@ const PostDetail = ({ post }: any) => {
     return (
       <p>
         {children.map((item: any) => {
-          console.log('item.text', item.text)
           if (item) {
             if (item.bold) {
               return <b>{item.text}</b>

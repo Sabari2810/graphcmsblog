@@ -6,10 +6,16 @@ import Layout from '../../components/Layout'
 import PostDetail from '../../components/PostDetail'
 import RecentPosts from '../../components/RecentPosts'
 import { Post } from '../../interface'
-import { getCategories, getPost, getPosts, getRecentPost } from '../../services'
+import {
+  getCategories,
+  getComments,
+  getPost,
+  getPosts,
+  getRecentPost,
+} from '../../services'
+import { Comments } from '../../components/Comments'
 
-const Post = ({ recentPosts, cats, post }: any) => {
-  console.log('post', post.content.raw)
+const Post = ({ recentPosts, cats, post, comments }: any) => {
   return (
     <Layout>
       <div className="mx-auto grid grid-cols-1 px-10 py-10 lg:grid-cols-3 lg:gap-10 lg:px-0">
@@ -17,6 +23,7 @@ const Post = ({ recentPosts, cats, post }: any) => {
           <PostDetail post={post} />
           <Author author={post.author} />
           <CommentsForm slug={post.slug} />
+          <Comments slug={post.slug} comments={comments} />
         </div>
         <div className="relative top-4 col-span-1 mt-10 h-fit lg:sticky lg:mt-0">
           <RecentPosts recentPosts={recentPosts} />
@@ -43,6 +50,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }: any) {
   const recentPosts = await getRecentPost()
   const cats = await getCategories()
+  const comments = await getComments(params.slug)
 
   const post = await getPost(params.slug)
 
@@ -51,6 +59,7 @@ export async function getStaticProps({ params }: any) {
       recentPosts,
       cats,
       post,
+      comments,
     },
   }
 }

@@ -24,3 +24,11 @@ export interface Category {
   slug: string
   title: string
 }
+
+export interface Comment {
+  id: string
+  name: string
+  email: String
+  comment: string
+  createdAt: string
+}
